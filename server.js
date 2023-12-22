@@ -3,9 +3,13 @@ const cors = require('cors')
 const morgan = require('morgan')
 const colors = require('colors')
 const dotenv = require('dotenv')
+const connectDB = require('./config/db')
 
 //dotenv config
 dotenv.config() //dotenv file are in root otherwise to dotenv.config({path:'file_path'})
+
+//mongodb connection
+connectDB();
 
 //rest object
 const app = express()

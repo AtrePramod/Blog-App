@@ -8,6 +8,9 @@ const connectDB = require('./config/db')
 //dotenv config
 dotenv.config() //dotenv file are in root otherwise to dotenv.config({path:'file_path'})
 
+//router import
+const userRoutes = require('./routes/userRoutes')
+
 //mongodb connection
 connectDB();
 
@@ -21,11 +24,7 @@ app.use(morgan('dev'))
 
 
 //routes
-app.get("/", (req, res) => {
-    res.status(200).send({
-        "message": "NODE SERVER"
-    })
-})
+app.use('/api/v1/user', userRoutes)
 
 //port 
 const PORT = process.env.PORT || 8080

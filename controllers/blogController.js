@@ -5,7 +5,7 @@ const userModel = require('../models/userModel');
 //get all blogs
 exports.getAllBlogsController = async (req, res) => {
     try {
-        const blogs = await blogModel.find({});
+        const blogs = await blogModel.find({}).populate('user');
         if (!blogs) {
             return res.status(200).send({
                 success: false,
@@ -14,7 +14,7 @@ exports.getAllBlogsController = async (req, res) => {
         }
         return res.status(200).send({
             success: true,
-            BolgCount: blogs.length,
+            BlogCount: blogs.length,
             message: 'All Blogs list',
             blogs
         })

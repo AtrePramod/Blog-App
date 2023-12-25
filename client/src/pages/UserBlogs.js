@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import BlogCard from '../components/BlogCard'
+import toast from 'react-hot-toast'
+
 const UserBlogs = () => {
     const [blogs, setBlogs] = useState([])
 
@@ -13,7 +15,7 @@ const UserBlogs = () => {
                 setBlogs(data?.userBlog.blogs)
             }
         } catch (error) {
-            console.log(error)
+            toast.error("Someting wrong")
         }
     }
     useEffect(() => {
@@ -24,6 +26,8 @@ const UserBlogs = () => {
             {blogs && blogs.map(blog => (
                 <BlogCard
                     key={blog._id}
+                    id={blog._id}
+                    isUser={true}
                     title={blog.title}
                     description={blog.description}
                     image={blog.image}

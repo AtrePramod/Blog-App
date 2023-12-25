@@ -10,12 +10,30 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import toast from 'react-hot-toast';
 
 
-
-export default function BlogCard({ title, description, image, username, time }) {
-
-
+export default function BlogCard({ title, description, image, username, time, id, isUser }) {
+    const navigate = useNavigate()
+    const handleEdit = () => {
+        navigate(`/blog-details/${id}`)
+    }
+    const handleDelete = async () => {
+        try {
+            const { data } = await axios.delete(`/api/v1/blog/delete-blog/${id}`)
+            if (data.success) {
+                toast.success("Deleted blog success")
+                navigate('/blogs')
+            }
+        } catch (error) {
+            toast.error("Someting wrong")
+        }
+    }
 
 
     return (
@@ -24,6 +42,19 @@ export default function BlogCard({ title, description, image, username, time }) 
                 boxShadow: '10px 10px 20px #ccc'
             }
         }}>
+
+            {isUser && (
+                <Box display={'flex'}>
+                    <IconButton onClick={handleEdit} sx={{ marginLeft: 'auto' }}>
+                        <ModeEditOutlineIcon />
+                    </IconButton>
+                    <IconButton onClick={handleDelete}>
+                        <DeleteIcon />
+                    </IconButton>
+                </Box>
+            )
+            }
+
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -57,6 +88,6 @@ export default function BlogCard({ title, description, image, username, time }) 
                 </IconButton>
 
             </CardActions>
-        </Card>
+        </Card >
     );
 }

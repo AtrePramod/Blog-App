@@ -4,16 +4,19 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { authActions } from '../redux/store'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast';
 const Header = () => {
     //global state
     const isLogin = useSelector(state => state.isLogin)
+    // isLogin = isLogin || localStorage.getItem('userId')
     const dispatch = useDispatch()
     const navigate = useNavigate()
     //handle logout 
     const handleLogout = () => {
         try {
             dispatch(authActions.logout())
-            alert("Logout successful")
+            toast.success("Logout successful")
+            localStorage.clear()
             navigate('/login')
         } catch (error) {
 

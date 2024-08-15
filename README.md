@@ -78,4 +78,4 @@ This is a full-stack Blog Application developed using the MERN stack (MongoDB, E
 
 ## Contact
 
-For any questions or issues, please contact [your-pramodatre05@gmail.com](mailto:pramodatre05@gmail.com).
+For any questions or issues, please contact [pramodatre05@gmail.com](mailto:pramodatre05@gmail.com).

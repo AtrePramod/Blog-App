@@ -2,6 +2,11 @@
 
 This is a full-stack Blog Application developed using the MERN stack (MongoDB, Express, React, and Node.js). The application allows users to create, read, update, and delete blog posts, and includes features like user authentication.
 
+## Live Demo
+
+You can check out the live application at [Blog Application](https://blogs-app-by.netlify.app/).
+
+
 ## Features
 
 - **User Authentication**:
